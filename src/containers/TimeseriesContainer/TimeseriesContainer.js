@@ -111,10 +111,10 @@ class TimeseriesContainer extends React.Component {
         return (
             <PageContainer>
                 <PageTree>
-                    {assetsFetched.length ? <AssetTree
+                    <AssetTree
                         assets={assetsFetched}
                         onSelect={this.handleAssetSelect}
-                         /> : null }
+                    />
                 </PageTree>
                 <PageSeries>
                      <TimeseriesSearch
