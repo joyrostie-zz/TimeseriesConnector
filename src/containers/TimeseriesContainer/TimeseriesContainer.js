@@ -42,7 +42,7 @@ class TimeseriesContainer extends React.Component {
             });
     }
 
-    handleAssetSelect = (data) => {
+    handleAssetSelect = data => {
         //User actions feedback info
         console.log(`Asset checked: ${data.title}`);
 
@@ -51,7 +51,7 @@ class TimeseriesContainer extends React.Component {
         });
     }
 
-    handleSeriesSelect = (ids) => {
+    handleSeriesSelect = ids => {
         this.setState({
             timeseriesChecked: ids,
         });
@@ -88,7 +88,7 @@ class TimeseriesContainer extends React.Component {
         const connectedSeries = allSeries.filter(elem => elem.assetId);
 
         const changes = connectedSeries.map(elem => {
-           return { id: elem.id, assetId: { setNull: true } }
+           return { id: elem.id, assetId: { setNull: true }}
         })
 
         if (changes.length) {
