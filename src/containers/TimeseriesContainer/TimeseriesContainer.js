@@ -106,7 +106,7 @@ class TimeseriesContainer extends React.Component {
 
     render() {
         const { assetsFetched } = this.state;
-        const filterRule = (timeseries) => !timeseries.assetId;
+        const filterRule = timeseries => !timeseries.assetId;
 
         return (
             <PageContainer>
