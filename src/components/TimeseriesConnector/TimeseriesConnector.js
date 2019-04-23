@@ -32,7 +32,7 @@ class TimeseriesConnector extends React.Component {
 
   componentWillMount() {
     if (window.localStorage.length) {
-      let tenant = JSON.parse(window.localStorage.getItem('tenant'));
+      const tenant = JSON.parse(window.localStorage.getItem('tenant'));
       this.setState({
         tenant
       })
