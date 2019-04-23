@@ -70,7 +70,6 @@ class TimeseriesContainer extends React.Component {
 
             //User actions feedback info
             const seriesString = timeseriesIds.join(', ')
-            // message.info(`Asset: ${this.state.assetChecked} was connected to TimeSeries: ${seriesString}`)
             notification.open({
                 message: 'Successfully connected',
                 description: `Asset: ${this.state.assetChecked} was connected to TimeSeries: ${seriesString}`,
