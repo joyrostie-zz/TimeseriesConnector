@@ -27,25 +27,13 @@ class TimeseriesConnector extends React.Component {
     this.setState({
       tenant
     });
-    window.localStorage.setItem('tenant', JSON.stringify(tenant))
-  }
-
-  componentWillMount() {
-    if (window.localStorage.length) {
-      const tenant = JSON.parse(window.localStorage.getItem('tenant'));
-      this.setState({
-        tenant
-      })
-      window.localStorage.removeItem('tenant')
-    }
   }
 
   render() {
-    const { tenant } = this.state;
 
     return (
       <PageContainer>
-        {tenant ? (
+        {this.state.tenant ? (
           <ReactAuthProvider
             project={this.state.tenant}
             redirectUrl={window.location.href}
