@@ -38,6 +38,7 @@ class TimeseriesConnector extends React.Component {
             project={this.state.tenant}
             redirectUrl={window.location.href}
             errorRedirectUrl={window.location.href}
+            enableTokenCaching
           >
             <TimeseriesContainer />
           </ReactAuthProvider>

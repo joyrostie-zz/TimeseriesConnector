@@ -33,13 +33,12 @@ class TimeseriesContainer extends React.Component {
         timeseriesChecked: [],
     }
 
-    componentDidMount() {
-        sdk.Assets.list()
-            .then(data => {
-                this.setState({
-                    assetsFetched: data.items
-                });
-            });
+    async componentDidMount() {
+        const listAssets = await sdk.Assets.list()
+
+        this.setState({
+            assetsFetched: listAssets.items
+        })
     }
 
     handleAssetSelect = data => {
