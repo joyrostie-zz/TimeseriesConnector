@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 import { TenantSelector } from "@cognite/gearbox";
-import { ReactAuthProvider } from "@cognite/react-auth";
-import TimeseriesContainer from '../../containers/TimeseriesContainer/TimeseriesContainer'
-import styled from 'styled-components';
-import 'antd/dist/antd.css';
+import * as sdk from "@cognite/sdk";
+import TimeseriesContainer from "../../containers/TimeseriesContainer/TimeseriesContainer";
+import styled from "styled-components";
+import "antd/dist/antd.css";
 
 const PageContainer = styled.div`
   width: 100vw;
@@ -23,34 +23,37 @@ class TimeseriesConnector extends React.Component {
     tenant: null
   };
 
-  handleTenantSelect = tenant => {
+  handleTenantSelect = async tenant => {
+    if (sdk.Login.isPopupWindow()) {
+      sdk.Login.popupHandler();
+      return;
+    }
+    await sdk.Login.authorize({
+      popup: true,
+      project: tenant,
+      redirectUrl: window.location.href,
+      errorRedirectUrl: window.location.href
+    });
+
     this.setState({
       tenant
     });
-  }
+  };
 
   render() {
-
     return (
       <PageContainer>
         {this.state.tenant ? (
-          <ReactAuthProvider
-            project={this.state.tenant}
-            redirectUrl={window.location.href}
-            errorRedirectUrl={window.location.href}
-            enableTokenCaching
-          >
-            <TimeseriesContainer />
-          </ReactAuthProvider>
+          <TimeseriesContainer />
         ) : (
-            <TenantSelectorContainer>
-              <TenantSelector
-                onTenantSelected={this.handleTenantSelect}
-                initialTenant='itera-dev'
-                title='TimeseriesConnector'
-              />
-            </TenantSelectorContainer>
-          )}
+          <TenantSelectorContainer>
+            <TenantSelector
+              onTenantSelected={this.handleTenantSelect}
+              initialTenant="itera-dev"
+              title="TimeseriesConnector"
+            />
+          </TenantSelectorContainer>
+        )}
       </PageContainer>
     );
   }

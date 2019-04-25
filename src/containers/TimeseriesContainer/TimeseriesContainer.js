@@ -58,9 +58,7 @@ class TimeseriesContainer extends React.Component {
     }
 
     handleSeriesConnect = async () => {
-        const timeseriesIds = this.state.timeseriesChecked.slice();
-
-        const changes = timeseriesIds.map(elem => {
+        const changes = this.state.timeseriesChecked.map(elem => {
             return { id: elem, assetId: { set: this.state.assetChecked } }
         })
 
@@ -68,7 +66,7 @@ class TimeseriesContainer extends React.Component {
             await sdk.TimeSeries.updateMultiple(changes);
 
             //User actions feedback info
-            const seriesString = timeseriesIds.join(', ')
+            const seriesString = this.state.timeseriesChecked.join(', ')
             notification.open({
                 message: 'Successfully connected',
                 description: `Asset: ${this.state.assetChecked} was connected to TimeSeries: ${seriesString}`,

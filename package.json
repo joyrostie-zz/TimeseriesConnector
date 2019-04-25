@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@cognite/gearbox": "^0.0.11",
+    "@cognite/gearbox": "^0.0.14",
     "@cognite/react-auth": "^2.1.2",
-    "@cognite/sdk": "^1.6.2",
+    "@cognite/sdk": "^1.7.0",
     "antd": "^3.16.5",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
